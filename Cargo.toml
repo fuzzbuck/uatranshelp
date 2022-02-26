@@ -1,0 +1,32 @@
+[package]
+name = "uatranshelp"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait = "0.1.51"
+bincode = "2.0.0-alpha.1"
+base64 = "0.13.0"
+dashmap = "4.0.2"
+mobc-redis-cluster = "0.1.1"
+mobc = "0.7.3"
+regex = "1.5.4"
+figment = "0.10.6"
+hex = "0.4.3"
+enum_index = "0.2.0"
+itertools = "0.10.3"
+enum_index_derive = "0.2.0"
+redis = { version = "0.21.4" }
+rocket = { version = "0.5.0-rc.1", features = ["json"] }
+rand = "0.8.4"
+sentry = "0.23.0"
+strsim = "0.10.0"
+whoami = "1.2.0"
+serde = "1.0.132"
+serde_stacker = "0.1.4"
+serde_json = "1.0.73"
+tokio = { version = "1.14.0", features = ["full"] }
+lazy_static = "1.4.0"
+deadpool-redis = "0.10.1"

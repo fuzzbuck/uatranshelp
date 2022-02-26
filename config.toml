@@ -1,0 +1,7 @@
+[default]
+redis_uri           = ""
+redis_pool_size     = 128
+
+[debug]
+redis_uri           = "redis://127.0.0.1:6379/0"
+redis_pool_size     = 8

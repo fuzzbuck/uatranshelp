@@ -1,0 +1,20 @@
+( I did not have enough time to write an actual legal policy, so here's a shortened version )
+Simplified Privacy Policy:
+ - During creation of an 'Offer', the user is required to provide their name, their contact details (phone number/email/other), the location of their 'Offer',
+   and the type of the 'Offer'.
+ - They can also choose to provide their Personal details, such as Age, Gender, Full name & a picture of them. However, this is NOT required.
+
+This information is stored in our database. The information is stored securely and according to the latest security practices.
+Every information that you might provide to us via the means of creating an 'Offer' is made public.
+You agree to this Policy when creating an offer.
+
+
+If you wish to permanently delete the information you have provided, you can either:
+    - Delete your 'Offer' by using the password provided by you when you created your 'Offer'. (https://uatranshelp.com/delete)
+    - Contact us via email: technical@uatranshelp.com
+
+The information is not shared with any third parties.
+No cookies are used on our website.
+
+
+-- [todo: need help translating into ukrainian and polish, PR's are welcome]

@@ -1,0 +1,7 @@
+/target
+Cargo.lock
+/.idea
+/frontend/.parcel-cache
+/frontend/dist
+/frontend/node_modules
+/frontend/.idea

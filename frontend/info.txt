@@ -1,0 +1,24 @@
+https://github.com/fuzzbuck/uatranshelp
+
+This is an open source project intended to help and provide information and resources to the refugees of ukraine.
+It provides functionality for volunteers to willing-fully create 'Offers' regarding support and help for refugees.
+
+The project's main incentive is to provide the following:
+    - Evacuation routes & transport from Ukraine to the Polish or Romanian border(s).
+    - Transport within the EU borders.
+    - Accommodations within the EU.
+
+The 'Offers' you can find on this website are created by volunteers. It is then important to realise that, anyone can be a volunteer.
+Do you have a working vehicle? Do you have a spare room? Are you willing to help? Create an offer.
+
+Note that since anyone can create an offer, this project can not guarantee safety of anyone who shall accept one, therefore
+we do not take ANY liability for any damage or harm to anyone or anything who shall accept an offer via the means of this project.
+
+
+If you are a developer, web designer, or proficient in other professions and want to help develop this project,
+please visit the github link (https://github.com/fuzzbuck/uatranshelp) & read the respective contribution guidelines.
+
+-- [todo: need help translating into ukrainian and polish, PR's are welcome]
+
+List of contributors:
+    - fuzzbuck

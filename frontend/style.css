@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    color: rgb(255,255,255);
+    background: rgb(0,19,26);
+    margin: 0;
+    padding: 0;
+    background: rgb(8, 8, 10);
+    background: linear-gradient(0deg, rgb(8, 8, 18) 0%, rgb(16, 16, 8) 100%);
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+}
+
+.fullwi {
+    width: 100%;
+}
+
+.fullhi {
+    height: 100%;
+}
+
+.abs {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.bg {
+    background: rgb(8, 8, 10);
+    background: linear-gradient(0deg, rgb(8, 8, 18) 0%, rgb(16, 16, 8) 100%);
+    z-index: -1;
+}
+
+.center {
+    text-align: center;
+}
+
+.mid {
+    padding: 1rem 6rem 6rem;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: rgb(16, 16, 8);
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0px 2px 0px rgba(255, 255, 255, 1);
+    margin-bottom: 2rem;
+}
+
+.marker-green {
+    filter: invert(72%) sepia(80%) saturate(409%) hue-rotate(80deg) brightness(97%) contrast(107%);
+}
+
+.marker-orange {
+    filter: invert(71%) sepia(95%) saturate(464%) hue-rotate(326deg) brightness(103%) contrast(101%);
+}
+
+.filter-box {
+    margin-top: 1rem;
+}
+
+.offer-details a {
+    font-size: 0.75rem;
+}
+
+.filter-box a, a:link, a:visited {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.filter-box a.active {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 1);
+}
+
+.padded {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.lang-select {
+    float: left;
+    margin-right: 4rem;
+}
+
+.lang-select img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.lang-select img {
+    filter: brightness(0.5);
+}
+
+.lang-select img.active {
+    filter: brightness(1.0);
+}
+
+h1 {
+    text-shadow: 0px 0px 8px rgba(255, 250, 202, 0.1);
+    font-size: 2rem;
+}
+
+a {
+    font-size: 1rem;
+}
+
+a:link, a:visited {
+    color: rgb(255,255,255);
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+button {
+    background-color: #fffa65;
+    border: solid 2px #fffa65;
+    border-radius: 0.2rem;
+    margin: 0.2rem;
+}
+
+button:hover {
+    background-color: transparent;
+    color: #fffa65;
+    border-color: #fffa65;
+}
+
+button:disabled {
+    background-color: #ffffff;
+    color: #000000;
+    transition: 0.2s ease-out;
+    cursor: wait;
+}
+
+.info-warning {
+    text-align: center;
+    padding: 0.75rem;
+    margin: 1rem 2rem;
+    font-style: italic;
+    border: solid 1px #ffaf40;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.mleft {
+    margin-left: auto;
+}
+
+.mright {
+    margin-right: auto;
+}
+
+.offer-popup {
+    max-width: 80%;
+    height: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
+    vertical-align: center;
+    position: absolute;
+    horiz-align: center;
+    background-color: rgba(4, 4, 8, 0.99);
+    border: 2px solid #fffa65;
+    box-shadow: 0px 0px 6rem rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    padding: 1rem;
+}
+
+.smallicon {
+    width: 16px;
+    height: 16px;
+}
+
+.warning {
+    color: #ffaf40;
+}
+
+.information {
+    color: #18dcff;
+}
+
+.info-info {
+    border-color: #18dcff !important;
+}
+
+.mapheight {
+    height: 26rem;
+}
+
+.map-offer-box {
+    border: 2px solid #fffa65;
+    margin-left: 2rem;
+    width: 26rem;
+}
+
+.map-offer-box p {
+    text-align: right;
+    margin: 1rem;
+}
+
+.map-label {
+    text-align: left;
+    float: left;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 0.75rem;
+}
+
+.main {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.block {
+    display: grid;
+    margin: auto;
+}
+
+.offerlist {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    transition: 0.2s ease-out;
+}
+
+
+.offer {
+    border: 2px solid #fffa65;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.offer-button {
+    margin-bottom: 2px;
+    background: transparent;
+    color: #fffa65;
+    text-decoration: underline;
+    border-color: transparent;
+    border-width: 0px 1px 0px 1px;
+    width: 100%;
+}
+
+.offer-button:hover {
+    border-color: #fffa65;
+}
+
+.margin {
+    margin: 1rem;
+}
+
+.icon {
+    max-width: 30px;
+    max-height: 30px;
+    filter: invert(91%) sepia(90%) saturate(472%) hue-rotate(354deg) brightness(105%) contrast(102%);
+    justify-self: center;
+}
+
+.offer span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    width: auto;
+}
+
+.icon-box {
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.icon-footer {
+    display: block;
+    color: #fffa65;
+    text-align: center !important;
+    font-family: Roboto Mono, monospace;
+    white-space: pre-line;
+}
+
+.offer a, a:link, p, h1 {
+    color: #fffa65;
+}
+
+#space-amount, #in {
+    color: #fffa65;
+    font-family: Roboto Mono, monospace;
+}
+
+.offer h1 {
+    font-family: Roboto Mono, monospace;
+    font-weight: 900;
+}
+
+.creator-img {
+    max-width: 66px;
+    max-height: 66px;
+    margin-right: 1rem;
+    border: 2px solid transparent;
+    border-radius: 1.5rem;
+    transition: 0.1s ease-in;
+}
+
+.creator-img:hover {
+    max-width: 132px;
+    max-height: 132px;
+    transition: 0.1s ease-out;
+}
+
+.inline {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+    .inline {
+        flex-direction: column;
+    }
+
+    .mid {
+        padding: 0rem;
+    }
+
+    .offerlist {
+        margin: 0rem;
+    }
+
+    #map {
+        width: 20rem;
+    }
+
+    .map-offer-box {
+        width: 20rem;
+    }
+
+    .nav {
+        height: 18rem;
+        position: relative;
+    }
+
+}
+
+.offer-popup span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.md {
+    margin-bottom: 1rem;
+}
+
+#map{
+    width: 36rem;
+    float: left;
+    z-index: 0;
+}
+
+
+/* todo: temporary width until map offers widget is finished */
+#map{
+    width: 48rem;
+}
+

@@ -1,0 +1,18 @@
+This site is being developed, maintained & hosted by a single person. (as of now)
+If you wish to donate & help improve my efforts, you can send cryptocurrency to my wallet(s):
+
+    - Bitcoin (BTC Segwit)
+        bc1qy4mdmkmtcjtaysk3fxx4vzx8ar8shk3vrjw94w
+
+    - Monero (XMR)
+        [soon]
+
+
+If you are a significant contributor, and want your addresses added here, please make a PR.
+
+The donations will go towards the costs of hosting this site.
+Shall the donations exceed those costs, I will donate the excess to a refugee charity of my choice.
+
+
+
+-- [todo: need help translating into ukrainian and polish, PR's are welcome]

@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "run": "parcel index.html --no-cache",
+    "build": "npm run copy-static && parcel build index.html --no-cache",
+    "copy-static": "shx cp -r assets dist && shx cp -r locales dist",
+    "copy-locales": "node cploc.js"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "leaflet": "^1.7.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.1.1",
+    "shx": "^0.3.4"
+  }
+}
