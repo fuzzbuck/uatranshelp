@@ -1,0 +1,4 @@
+[default]
+limits = { forms = "2 MiB", json = "8 MiB" }
+
+[debug]
