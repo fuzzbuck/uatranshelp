@@ -27,5 +27,15 @@
     "pinonmap": "przypnij na mapie",
     "tr-timeago.secondsago": "sekund temu",
     "tr-timeago.minutesago": "minut temu",
-    "tr-timeago.hoursago": "godzin temu"
+    "tr-timeago.hoursago": "godzin temu",
+    "offerdesc": "opis przez twórce oferty",
+    "age": "wiek",
+    "firstname": "imię",
+    "secondname": "nazwisko",
+    "gender": "płeć",
+    "from": "z",
+    "to": "do",
+    "transport": "zapewnia transport",
+    "pets": "dozwolone zwierzęta",
+    "necessities": "zapewnia potrzeby ludzkie (żywność, woda, itd.)"
 }

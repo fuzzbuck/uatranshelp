@@ -27,6 +27,16 @@
   "pinonmap": "pin on map",
   "tr-timeago.secondsago": "seconds ago",
   "tr-timeago.minutesago": "minutes ago",
-  "tr-timeago.hoursago": "hours ago"
+  "tr-timeago.hoursago": "hours ago",
+  "offerdesc": "description by offer creator",
+  "age": "age",
+  "firstname": "first name",
+  "secondname": "second name",
+  "gender": "gender",
+  "from": "from",
+  "to": "to",
+  "transport": "provides transport",
+  "pets": "allows pets",
+  "necessities": "provides necessities (food, water, etc)"
 
 }

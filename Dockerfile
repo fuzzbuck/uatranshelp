@@ -8,6 +8,9 @@ COPY ./config.toml .
 COPY ./Rocket.toml .
 COPY ./Rocket.toml .
 
+
+
+RUN
 RUN apk add musl-dev
 
 ENTRYPOINT cargo run --release

@@ -2,6 +2,8 @@
 //! along with type & enum definitions
 
 use std::{error::Error, time::Duration};
+use std::ops::Add;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 use deadpool_redis::redis::transaction;
 use itertools::Itertools;
@@ -152,7 +154,7 @@ impl Offer {
 
         let _ = conn.set::<_, _, _>(&key, raw).await?;
         let _ = conn
-            .expire::<_, _>(&key, Duration::from_secs(60 * 60 * OFFER_TTL_HOURS).as_secs() as usize)
+            .expire_at::<_, _>(&key, (SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() + Duration::from_secs (60 * 60 * OFFER_TTL_HOURS).as_secs()) as usize)
             .await?;
 
         Ok(())
