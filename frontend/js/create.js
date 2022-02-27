@@ -256,7 +256,7 @@ document.querySelector("#location-sel-box").addEventListener("submit", e => {
     let city = document.getElementById("cityval").value;
     let street = document.getElementById("streetval").value;
     let additional = document.getElementById("additionalval").value;
-    let geo = map.map.getCenter();
+    let geo = map.get_coord_pos();
 
     map.set_coord_status(false);
     map.unborrow();
