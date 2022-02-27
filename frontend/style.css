@@ -212,8 +212,7 @@ button:disabled {
 }
 
 .offer-popup {
-    width: 100%;
-    height: 100%;
+    width: 80%;
     left: 0;
     right: 0;
     margin: auto;
