@@ -3,6 +3,7 @@ import "./anim.js"
 import "./map.js"
 import * as api from "./api.js";
 import * as offer from "./offer.js";
+import * as create from "./create.js";
 
 
 let refresh = document.getElementById("refresh");

@@ -4,7 +4,9 @@ use std::{
     error::Error,
     time::{SystemTime, UNIX_EPOCH},
 };
-
+use std::net::IpAddr;
+use std::str::FromStr;
+use async_trait::async_trait;
 use redis::acl::Rule::Off;
 use regex::Regex;
 use rocket::{
@@ -18,14 +20,12 @@ use rocket::{
     Request,
     Response,
 };
+use recaptcha;
+use rocket::request::{FromRequest, Outcome};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-use crate::{
-    offer,
-    offer::{rnd_id, Offer, OfferType, PersonalData},
-    util,
-};
+use crate::{CONFIG, offer, offer::{rnd_id, Offer, OfferType, PersonalData}, util};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct WrappedResponse {
@@ -102,6 +102,7 @@ pub struct OfferRequest {
     pub translated: bool,
     pub accepted_terms: bool,
     pub password: String,
+    pub captcha: String
 }
 
 /// Creates a new offer
@@ -110,6 +111,18 @@ pub(crate) async fn new(data: Json<OfferRequest>) -> WrappedResponse {
     // basic field validation
     let req = &data.0;
 
+    // validate captcha first
+    // todo write api, this is from 2012 and doesnt work with new tokio  anymore
+    /*
+
+    let res = recaptcha::verify(&CONFIG.recaptcha_v2_key, &data.captcha, None).await;
+
+    if res.is_err() {
+        return forbidden("Captcha challenge failed.");
+    }
+
+     */
+
     if req.name.len() < 2 || req.name.len() > 64 {
         return forbidden("Name must be between 2 and 64 characters.");
     }
@@ -117,8 +130,8 @@ pub(crate) async fn new(data: Json<OfferRequest>) -> WrappedResponse {
     if req.personal.is_some() {
         let personal = req.personal.as_ref().unwrap();
 
-        if personal.age < 18 || personal.age > 100 {
-            return forbidden("Age must be between 18 and 100.");
+        if personal.age < 18 {
+            return forbidden("You must be above 18 years old.");
         }
 
         if personal.first_name.len() < 1
@@ -133,35 +146,36 @@ pub(crate) async fn new(data: Json<OfferRequest>) -> WrappedResponse {
             return forbidden("Gender should be between 1 and 16 characters.");
         }
 
-        if personal.photo_b64_img.len() < 128 || personal.photo_b64_img.len() > 4096 {
-            return forbidden("Personal Image is corrupted, or too large.");
+        // ~ 1.3 MB limit (+33% because of base64)
+        if personal.photo_b64_img.len() < 64 || personal.photo_b64_img.len() > 1000000 {
+            return forbidden("Uploaded image is too big, reduce the size by compressing it (e. jpeg format) and try again.");
         }
     }
 
-    if req.contact.len() < 8 || req.contact.len() > 128 {
+    if req.contact.len() > 128 {
         return forbidden(
-            "Contact data must be between 8 and 128 characters, must contain '@' and '.'.",
+            "Contact data can be up to 128 characters",
         );
     }
 
-    if req.location.street_address.len() < 1 || req.location.street_address.len() > 128 {
+    if req.location.street_address.len() < 1 || req.location.street_address.len() > 64 {
         return forbidden("Street address must be between 1 and 128 characters.");
     }
 
-    if req.location.city.len() < 1 || req.location.city.len() > 128 {
-        return forbidden("City must be between 1 and 128 characters.");
+    if req.location.city.len() < 1 || req.location.city.len() > 64 {
+        return forbidden("City must be between 1 and 64 characters.");
     }
 
     if req.location.additional_info.len() < 1 || req.location.additional_info.len() > 128 {
         return forbidden("Additional location info must be between 1 and 128 characters.");
     }
 
-    if req.title.len() < 8 || req.title.len() > 128 {
-        return forbidden("Description must be between 8 and 128 characters.");
+    if req.title.len() < 8 || req.title.len() > 256 {
+        return forbidden("Title must be between 8 and 256 characters.");
     }
 
-    if req.description.len() < 32 || req.description.len() > 512 {
-        return forbidden("Description must be between 32 and 512 characters.");
+    if req.description.len() < 32 || req.description.len() > 1024 {
+        return forbidden("Description must be between 32 and 1024 characters.");
     }
 
     if req.translated == false {

@@ -42,6 +42,7 @@ struct Index {
 pub struct Config {
     pub redis_uri: String,
     pub redis_pool_size: usize,
+    pub recaptcha_v2_key: String
 }
 
 lazy_static! {

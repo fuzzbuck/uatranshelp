@@ -19,6 +19,57 @@ If you are a developer, web designer, or proficient in other professions and wan
 please visit the github link (https://github.com/fuzzbuck/uatranshelp) & read the respective contribution guidelines.
 
 -- [todo: need help translating into ukrainian and polish, PR's are welcome]
+-- [ the translations below are from google translate, please proofread @ submit a PR !  thx ]
 
-List of contributors:
-    - fuzzbuck
+
+
+
+
+
+https://github.com/fuzzbuck/uatranshelp
+
+Jest to projekt open source, którego celem jest pomoc i dostarczanie informacji i zasobów uchodźcom z Ukrainy.
+Umożliwia wolontariuszom dobrowolne tworzenie „Ofert” dotyczących wsparcia i pomocy uchodźcom.
+
+Główną zachętą projektu jest zapewnienie:
+    - Drogi ewakuacyjne i transport z Ukrainy na granicę (granice) Polski lub Rumunii.
+    - Transport w granicach UE.
+    - Noclegi na terenie UE.
+
+„Oferty”, które można znaleźć na tej stronie, są tworzone przez wolontariuszy. Należy więc zdać sobie sprawę, że każdy może być wolontariuszem.
+Masz sprawny pojazd? Masz wolny pokój? Czy chcesz pomóc? Utwórz ofertę.
+
+Pamiętaj, że skoro każdy może stworzyć ofertę, ten projekt nie może zagwarantować bezpieczeństwa każdemu, kto ją zaakceptuje, dlatego
+nie ponosimy ŻADNEJ odpowiedzialności za jakiekolwiek szkody lub szkody wyrządzone komukolwiek lub czemukolwiek, kto przyjmie ofertę za pośrednictwem tego projektu.
+
+
+Jeśli jesteś programistą, projektantem stron internetowych lub biegły w innych zawodach i chcesz pomóc w rozwoju tego projektu,
+odwiedź link github (https://github.com/fuzzbuck/uatranshelp) i przeczytaj odpowiednie wytyczne dotyczące wkładu.
+
+
+
+
+
+
+
+
+
+https://github.com/fuzzbuck/uatranshelp
+
+Це проект з відкритим вихідним кодом, покликаний допомогти та надати інформацію та ресурси біженцям України.
+Волонтерам пропонується можливість охоче створювати «пропозиції» щодо підтримки та допомоги біженцям.
+
+Основним стимулом проекту є надання наступного:
+    - Шляхи евакуації та транспорт з України до польського чи румунського кордону(ів).
+    - Транспорт у межах ЄС.
+    - Проживання в межах ЄС.
+
+«Пропозиції», які ви можете знайти на цьому веб-сайті, створені волонтерами. Тоді важливо усвідомити, що будь-хто може стати волонтером.
+У вас є робочий автомобіль? У вас є вільна кімната? Ви готові допомогти? Створіть пропозицію.
+
+Зауважте, що, оскільки будь-хто може створити пропозицію, цей проект не може гарантувати безпеку будь-кого, хто її прийме
+ми не несемо жодної відповідальності за будь-яку шкоду або шкоду комусь чи будь-кому, хто прийме пропозицію за допомогою цього проекту.
+
+
+Якщо ви розробник, веб-дизайнер або володієте іншими професіями і хочете допомогти розробити цей проект,
+будь ласка, перейдіть за посиланням github (https://github.com/fuzzbuck/uatranshelp) і ознайомтеся з відповідними інструкціями щодо внеску.

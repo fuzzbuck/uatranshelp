@@ -5,7 +5,7 @@
   "scripts": {
     "run": "parcel index.html --no-cache",
     "build": "shx rm -r ./dist && npm run copy-locales && npm run copy-static && parcel build index.html --no-cache",
-    "copy-static": "shx cp -r ./assets ./dist && shx cp -r ./locales ./dist",
+    "copy-static": "npm run copy-locales && shx cp -r ./assets ./dist && shx cp -r ./locales ./dist",
     "copy-locales": "node cploc.js"
   },
   "dependencies": {

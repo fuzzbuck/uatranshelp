@@ -1,13 +1,15 @@
 import "leaflet";
 import anime from "animejs";
 
-let zoom = 5;
-let lat = 50;
-let lon = 20;
+let zoom = 3;
+let lat = 52;
+let lon = 25;
 
-let map = L.map('map', {
-    minZoom: 1,
-    maxZoom: 20
+const ORIG_PARENT = document.getElementById("map").parentNode;
+
+export let map = L.map('map', {
+    minZoom: 3,
+    maxZoom: 15
 }).setView([lat, lon], zoom);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -58,6 +60,21 @@ let otherIconNeed  = L.icon({
     className: "marker-orange"
 });
 
+export let coordIconOrange = L.icon({
+    iconUrl: "assets/icons8-plus-64.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    className: "marker-orange"
+});
+
+export let coordIconGreen = L.icon({
+    iconUrl: "assets/icons8-plus-64.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    className: "marker-green"
+});
+
+
 let typeIcons = (otype) => {
     if (otype.hasOwnProperty("OfferTransport")) {
         let vehicle = otype["OfferTransport"]["vehicle"];
@@ -76,7 +93,7 @@ let typeIcons = (otype) => {
 }
 
 let open = false;
-function open_map() {
+export function open_map() {
     open = true;
     anime({
         targets: "#map-box",
@@ -87,25 +104,79 @@ function open_map() {
         easing: "easeOutQuad",
         begin: (anim) => {
             anim.animatables[0].target.style.display = "";
-        }
+        },
     });
+
+    map.locate({setView: true, maxZoom: 20});
 }
 
+export let OFFER_MARKERS = [];
 export let render_marker = (offer) => {
-    if (!open) {
-        open_map();
-    }
-
     let icon = typeIcons(offer.otype);
-    L.marker([offer.location.geo.lat, offer.location.geo.lon], {icon: icon}).addTo(map).on("mouseover", () => {
+    let marker = L.marker([offer.location.geo.lat, offer.location.geo.lon], {icon: icon}).addTo(map).on("mouseover", () => {
         // todo display details next to map
     });
+    OFFER_MARKERS.push(marker);
 }
+
+export let clear_markers = () => {
+    OFFER_MARKERS.forEach(marker => {
+        map.removeLayer(marker);
+    });
+    OFFER_MARKERS = [];
+}
+
+export let coord_on = false;
+export let CHECKPOINT_MARKER = null;
+export let LINE = null;
+let coord_marker = L.marker([0.0, 0.0], {icon: coordIconOrange}).addTo(map);
+
+export let set_coord_status = (val) => {
+    coord_on = val;
+}
+
+map.on("moveend", () => {
+    let pos = map.getCenter();
+
+    document.getElementById("lat").innerHTML = pos.lat.toFixed(6);
+    document.getElementById("lon").innerHTML = pos.lng.toFixed(6);;
+
+    console.log(coord_on);
+    if (coord_on) {
+        coord_marker.setLatLng(pos);
+
+        if (CHECKPOINT_MARKER != null) {
+            if (LINE != null) {
+                map.removeLayer(LINE);
+            }
+            LINE = L.polyline([pos, CHECKPOINT_MARKER.getLatLng()], {color: "red"}).addTo(map);
+        }
+    } else {
+        if (LINE != null) {
+            map.removeLayer(LINE);
+            LINE = null;
+        }
+    }
+})
+
+
 
 export let focus = (offer) => {
     map.flyTo([offer.location.geo.lat, offer.location.geo.lon], 8, {
         duration: 5
     });
+}
+
+export let borrow = (elem) => {
+    elem.appendChild(document.getElementById("map"));
+}
+
+export let unborrow = () => {
+    ORIG_PARENT.appendChild(document.getElementById("map"));
+}
+
+export let checkpoint = () => {
+    CHECKPOINT_MARKER = L.marker(map.getCenter(), {icon: coordIconOrange}).addTo(map);
 }
 
 /*

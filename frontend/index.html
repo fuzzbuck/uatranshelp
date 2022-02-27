@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
     <!-- Bootstrap CSS -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
@@ -66,13 +69,360 @@
     <i class="icon-info-sign information"></i> The offers can be made by anyone, therefore we are not liable or responsible for your safety. Think hard.
 </div>
 
+
+<!-- Offer Creation screen -->
+<div class="create-popup" style="display: none;">
+
+    <div class="create-box">
+        <button style="position: absolute;" class="tr" id="exit">exit</button>
+
+        <!-- Form stages -->
+        <div>
+
+            <div id="infobox">
+                <h1 class="tr" id="offer-creation">offer creation</h1>
+                <a class="tr" id="offer-guidelines">
+                    Offer creation guidelines:
+                </a>
+                <ul>
+                    <li class="tr" id="guideline1"> - Each text input field you might encounter HAS to be translated into 2 main languages: English, Ukrainian</li>
+                    <li class="tr" id="guideline2"> - Use https://translate.google.com/, https://www.deepl.com/en/translator, or any other free translator.</li>
+                    <li class="tr" id="guideline3"> - Offers that contain non-translated information will be discarded and not displayed.</li>
+                    <li class="tr" id="guideline4"> - While only 2 languages are necessary, we strongly encourage  including Polish and Romanian.</li>
+                    <li class="tr" id="guideline5"> - All offers are automatically deleted after 48 hours, if you still require an offer after that time, simply create it again.</li>
+                    <li class="tr" id="guideline6"> - Read the <a href="./policy.txt">policy</a> before proceeding.</li>
+                </ul>
+                <div class="flex fullwi margin">
+                    <button class="tr", id="begin-create">
+                        I've read the policy, I am 18 years old or older, I understand the need of translating each text field.
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stage 1 -->
+            <form id="stage1" hidden>
+                <h1 class="tr" id="choose-type">choose offer type</h1>
+                <div class="fullwi flex" id="stage1-box">
+                    <div class="interactive grid selectable">
+                        <span class="tr" id="offer-transport">Offer Transport</span>
+                        <img class="icon marker-green" src="./assets/icons8-car-90.png" class="icon">
+                    </div>
+                    <div class="interactive grid selectable">
+                        <span class="tr" id="need-transport">Need Transport</span>
+                        <img class="icon marker-orange" src="./assets/icons8-car-90.png" class="icon">
+                    </div>
+                    <div class="interactive grid selectable">
+                        <span class="tr" id="offer-accommodation">Offer Accommodation</span>
+                        <img class="icon marker-green" src="./assets/icons8-users-90.png" class="icon">
+                    </div>
+                    <div class="interactive grid selectable">
+                        <span class="tr" id="need-accommodation">Need Accommodation</span>
+                        <img class="icon marker-orange" src="./assets/icons8-users-90.png" class="icon">
+                    </div>
+                    <div class="interactive grid selectable">
+                        <span class="tr" id="offer-other">Offer Other</span>
+                        <img class="icon marker-green" src="./assets/icons8-question-mark-96.png" class="icon">
+                    </div>
+                    <div class="interactive grid selectable">
+                        <span class="tr" id="need-other">Need Other</span>
+                        <img class="icon marker-orange" src="./assets/icons8-question-mark-96.png" class="icon">
+                    </div>
+                </div>
+            </form>
+
+            <!-- Stage 2 -->
+            <form onsubmit="return false;" id="stage2" hidden>
+                <h1 class="tr" id="instructions">instructions</h1>
+                <span class="tr" id="instructions1">
+                    You will now be shown an interactive map.
+                    Please select where you are, or where the offer applies.
+                </span>
+                <button class="tr margin" id="stage2-nextbtn">
+                    > > >
+                </button>
+            </form>
+
+            <!-- Stage 2 for Offer Transport -->
+            <form id="stage2-transport" hidden>
+                <h1 class="tr" id="choose-vehicle">choose vehicle type</h1>
+
+                <div class="fullwi flex">
+                    <div class="left grid icon-box interactive selectable" id="PersonalMax5Seats">
+                        <img class="icon" src="assets/icons8-car-90.png">
+                        <a class="tr icon-footer" id="personal-vehicle">personal vehicle</a>
+                    </div>
+                    <div class="left grid icon-box interactive selectable" id="Bus">
+                        <img class="icon" src="assets/icons8-bus-90.png">
+                        <a class="tr icon-footer" id="big-bus-van">big bus/van</a>
+                    </div>
+                    <div class="left grid icon-box interactive selectable" id="Other">
+                        <img class="icon" src="assets/icons8-question-mark-96.png">
+                        <a class="tr icon-footer" id="something-else">something else</a>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Stage 2 for Offer Accommodation -->
+            <form onsubmit="return false;" id="stage2-accommodation" style="display: inline-grid;" hidden>
+                <h1 class="tr" id="accommodation-header">accommodation details</h1>
+
+                <!-- Accommodation type -->
+                <div class="fullwi flex pad-bot">
+                    <h2 class="mtb-auto tr" id="type">type</h2>
+                    <div class="radios grid">
+                        <div>
+                            <input id="Mass" type="radio" name="accommodation-type"><label for="b1"><span class="tr" id="mass">Mass accommodation (camps, volunteers)</span></label>
+                        </div>
+                        <div>
+                            <input id="Hotel" type="radio" name="accommodation-type"><label for="b2"><span class="tr" id="hotel">Hotels, motels, etc.</span></label>
+                        </div>
+                        <div>
+                            <input id="Shared" type="radio" name="accommodation-type"><label for="b3"><span class="tr" id="shared">Shared (living with a family)</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- allows pets, neccessities and transport ? -->
+                <div class="fullwi flex pad-bot">
+                    <h2 class="mtb-auto tr" id="rules">rules</h2>
+                    <div class="radios grid">
+                        <div>
+                            <input id="petsval" type="checkbox" name="a2c"><label for="petsval"><span class="tr" id="pets-allowed">Pets allowed in accommodation</span></label>
+                        </div>
+                        <div>
+                            <input id="necessitiesval" type="checkbox" name="a2c"><label for="necessitiesval"><span class="tr" id="provides-necessities">Necessities (food, water, etc.) provided</span></label>
+                        </div>
+                        <div>
+                            <input id="transportval" type="checkbox" name="a2c"><label for="transportval"><span class="tr" id="provides-transport">Transport to accommodation provided</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="tr margin" id="accommodation-stage2-nextbtn" disabled>
+                    > > >
+                </button>
+            </form>
+
+            <!-- Stage 3 for Offer Transport -->
+            <form onsubmit="return false;" id="stage3-transport" hidden>
+                <h1 class="tr" id="instructions">instructions</h1>
+                <span class="tr" id="transport-instructions1">
+                    You will now be shown an interactive map.
+                    Please select WHERE FROM are you offering/needing transport.
+                </span>
+                <button class="tr margin" id="transport-stage3-nextbtn">
+                    > > >
+                </button>
+            </form>
+
+            <!-- Stage 4 for Offer Transport -->
+            <form onsubmit="return false;" id="stage4-transport" hidden>
+                <h1 class="tr" id="instructions">instructions</h1>
+                <span class="tr" id="transport-instructions2">
+                    Now, select WHERE TO.
+                </span>
+                <button class="tr margin" id="transport-stage4-nextbtn">
+                    > > >
+                </button>
+            </form>
+
+            <!-- Extras -->
+
+            <!-- Location select w/ map -->
+            <form id="location-sel-box" hidden>
+                <h1 class="tr" id="pinpoint">pinpoint map location</h1>
+                <div id="temp-map-box" style="display: flex; justify-content: center;">
+                    <!-- Map widget is temporarily moved into this box while active -->
+                </div>
+                <div class="pad-bot">
+                    <span id="lat">94.038014</span>
+                    <span>|</span>
+                    <span id="lon">21.308405</span>
+                </div>
+
+                <div class="fullwi flex pad-bot" id="country-inputs">
+                    <h2 class="mtb-auto tr" id="select-country">select country</h2>
+                    <div class="radios grid" id="country-radios">
+                        <div>
+                            <input checked id="Ukraine" type="radio" name="country"><label for="Ukraine"><img class="smallicon ml-min" style="filter: none;" src="assets/icons8-ukraine-80.png"><span>Ukraine / україни / Ukraina / Ucraina</span></label>
+                        </div>
+                        <div>
+                            <input id="Poland" type="radio" name="country"><label for="Poland"><img class="smallicon ml-min" style="filter: none;" src="assets/icons8-poland-80.png"><span>Poland / Польща / Polska / Polonia</span></label>
+                        </div>
+                        <div>
+                            <input id="Romania" type="radio" name="country"><label for="Romania"><img class="smallicon ml-min" style="filter: none;" src="assets/icons8-romania-80.png"><span>Romania / румунія / Rumunia / România</span></label>
+                        </div>
+                        <div>
+                            <input id="Europe" type="radio" name="country"><label for="Europe"><img class="smallicon ml-min" style="filter: none;" src="assets/icons8-flag-of-europe-80.png"><span>Europe / європа / Europa</span></label>
+                        </div>
+                        <div>
+                            <input id="Other" type="radio" name="country"><label for="Other"><img class="smallicon ml-min" style="filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(279deg) brightness(104%) contrast(104%);" src="assets/icons8-world-90.png"><span>Other / інший / Inny / Altul</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fullwi flex pad-bot" id="location-inputs">
+                    <h2 class="mtb-auto tr" id="input-details">input details</h2>
+                    <div class="inputs grid">
+                        <div>
+                            <label class="tr mtb-auto" for="city" id="city">city</label>
+                            <input required class="right" type="text" id="cityval" name="city" placeholder="New York" maxlength="64">
+                        </div>
+                        <div>
+                            <label class="tr mtb-auto" for="street" id="street">street</label>
+                            <input required class="right" type="text" id="streetval" name="street" placeholder="7th Long Street, ap. 84" maxlength="128">
+                        </div>
+                        <div>
+                            <label class="tr mtb-auto" for="additional" id="additional">additional info</label>
+                            <input required class="right" type="text" id="additionalval" name="additional" placeholder="Door code: 0202" maxlength="128">
+                        </div>
+                    </div>
+                </div>
+
+
+                <button class="tr fullwi">
+                    > > >
+                </button>
+            </form>
+
+            <form onsubmit="return false;" id="stage5-transport" hidden>
+                <h1 class="tr" id="verify-path">is this path correct?</h1>
+                <div id="temp-map-box-2" style="display: flex; justify-content: center;">
+                    <!-- Map widget is temporarily moved into this box while active -->
+                </div>
+                <div class="flex fullwi margin">
+                    <div style="margin-right: auto;">
+                        <span class="tr marker-orange" id="from">from:</span>
+                        <a id="location-verify-from"> te tet et e</a>
+                    </div>
+                    <div>
+                        <span class="tr marker-green" id="to">from:</span>
+                        <a id="location-verify-to">te te</a>
+                    </div>
+                </div>
+                <div class="flex fullwi">
+                    <button class="tr fullwi mtb-auto" id="location-verify-no" onclick="window.location.reload();">
+                        no
+                    </button>
+                    <button class="tr fullwi mtb-auto" id="location-verify-yes">
+                        yes
+                    </button>
+                </div>
+            </form>
+
+            <form id="stage3" hidden>
+                <h1 class="tr" id="fill-details">offer details</h1>
+
+                <div class="offer-details fullwi flex margin">
+                    <div class="grid">
+                        <span class="tr" id="name-question">what's your name?</span>
+                        <input required type="text" id="namevalin" minlength="2" name="name" placeholder="Joe Doe" maxlength="64">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="contact-question">how to contact you?</span>
+                        <input required type="text" id="contactvalin" minlength="4" name="contact" placeholder="phone +48 000 000 00" maxlength="64">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="spots-amount">available/needed spots</span>
+                        <input required type="number" id="spacesvalin" name="spaces" placeholder="1" max="100000" min="1">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="offer-password">offer password</span>
+                        <input required type="password" id="passwordvalin" name="password" maxlength="32" minlength="4">
+                    </div>
+                </div>
+
+
+                <div class="flex margin" style="margin-top: 2rem;">
+                    <span class="tr" id="title">title</span>
+                    <textarea minlength="8" class="fullwi" id="titleval" placeholder="This is the main title of the offer. Make sure it's translated into 2 main languages." maxlength="256" required></textarea>
+                </div>
+
+                <div class="flex margin" style="margin-top: 2rem;">
+                    <span class="tr" id="description">description</span>
+                    <textarea minlength="32" class="fullwi" rows="8" id="descriptionval" placeholder="Put any details about your offer here. Max 1024 characters, REMEMBER TO TRANSLATE !" maxlength="1024" required></textarea>
+                </div>
+
+                <button class="tr fullwi">
+                    > > >
+                </button>
+
+            </form>
+
+            <form id="stage4" hidden>
+                <h1 class="tr" id="personal-data">personal data</h1>
+
+                <div class="offer-details fullwi flex margin" id="personal-details-create">
+                    <div class="grid">
+                        <span class="tr" id="firstname">first name</span>
+                        <input required type="text" id="firstnamevalin" placeholder="Joe" maxlength="64">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="lastname">last name</span>
+                        <input required type="text" id="lastnamevalin" placeholder="Doe" maxlength="64">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="age">age</span>
+                        <input required type="number" id="agevalin" placeholder="22" min="18" max="254">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="gender">last name</span>
+                        <input required type="text" id="gendervalin" placeholder="M" maxlength="16">
+                    </div>
+                    <div class="grid">
+                        <span class="tr" id="selfie">selfie</span>
+                        <input required type="file" accept="image/*" id="pic">
+                    </div>
+                </div>
+
+                <button class="fullwi">
+                    > > >
+                </button>
+                <button class="tr fullwi" id="stage4-skipbtn">
+                   skip
+                </button>
+
+            </form>
+
+            <!-- confirm checkboxes & captcha & create offer -->
+            <form onsubmit="return false;" id="stage5" hidden>
+                <h1>captcha</h1>
+
+                <div class="margin">
+                    <div class="g-recaptcha" data-callback="captcha_ok" data-theme="dark" data-sitekey="6Lf-qKIeAAAAAIhVmR8kY5_pyUE7Q2AfYeY5eTTQ"></div>
+                </div>
+            </form>
+
+            <form onsubmit="return false;" id="stage6" hidden>
+                <h1 class="tr" id="finish">finish</h1>
+
+                <div class="flex margin" style="margin-top: 2rem;">
+                    <span hidden class="tr" id="success">success!</span>
+                    <span hidden class="tr" id="failure">failure</span>
+                </div>
+
+                <div class="flex margin" style="margin-top: 2rem; text-align: center;">
+                    <span hidden class="tr" id="finish-good">your offer has been submitted<br>and is being verified by a moderator,<br>it should be available shortly</span>
+                    <span hidden class="tr" id="finish-bad">the server has rejected your offer,<br>please try again later</span>
+                    <span id="offer-id-val"></span>
+                </div>
+
+                <button class="tr fullwi" onclick="window.location.reload();">
+                    > > >
+                </button>
+            </form>
+        </div>
+        <!-- Form stages -->
+    </div>
+</div>
+
 <!-- Outer box -->
 <div class="main">
 
     <!-- Map -->
     <!-- OpenStreetMap embed -->
     <div id="map-box" class="mid" style="opacity: 0; max-height: 0px; transform: scale(0);">
-        <div class="inline">
+        <div class="flex">
             <div class="mapheight" id="map" style="float: left;"></div>
             <div class="map-offer-box" hidden>
                 <div style="width: 100%; height: 100%; text-align: center;">
@@ -97,15 +447,15 @@
     <a id="num-offers">[1]</a> <span class="tr" id="offers">Offers</span>
 
     <div>
-        <div class="inline filter-box">
+        <div class="flex filter-box">
             <a class="filter tr active" id="all">All</a>
-            <a class="filter tr" id="offer-transport">Offering Transport</a>
+            <a class="filter tr" id="offer-transport">Offer Transport</a>
             <a class="filter tr" id="need-transport">Need Transport</a>
 
-            <a class="filter tr" id="offer-accommodation">Offering Accommodation</a>
+            <a class="filter tr" id="offer-accommodation">Offer Accommodation</a>
             <a class="filter tr" id="need-accommodation">Need Accommodation</a>
 
-            <a class="filter tr" id="offer-other">Offering Other</a>
+            <a class="filter tr" id="offer-other">Offer Other</a>
             <a class="filter tr" id="need-other">Need Other</a>
         </div>
     </div>
@@ -129,46 +479,49 @@
                         </a>
                         <br><br>
 
-                        <div class="offer-details fullwi inline" id="personal-details">
-                            <div class="block">
+                        <div class="offer-details fullwi flex" id="personal-details">
+                            <div class="grid">
                                 <span class="tr" id="age">age:</span>
                                 <a id="ageval">48</a>
                             </div>
-                            <div class="block">
+                            <div class="grid">
                                 <span class="tr" id="firstname">first name:</span>
                                 <a id="firstnameval">Dude</a>
                             </div>
-                            <div class="block">
+                            <div class="grid">
                                 <span class="tr" id="secondname">second name:</span>
                                 <a id="lastnameval">McDoodens</a>
                             </div>
-                            <div class="block">
+                            <div class="grid">
                                 <span class="tr" id="gender">gender:</span>
                                 <a id="genderval">M</a>
                             </div>
                         </div>
 
                         <br><br>
-                        <div class="offer-details fullwi inline" id="transport-details" style="display:none;">
-                            <div class="block">
+                        <div class="offer-details fullwi flex" id="transport-details" style="display:none;">
+                            <div class="grid">
                                 <span class="tr" id="from">from:</span>
                                 <a id="fromval">Test St. 84th Ukraine</a>
                             </div>
-                            <div class="block">
+                            <div>
+                                <button class="tr" id="view-path">mark path on map</button>
+                            </div>
+                            <div class="grid">
                                 <span class="tr" id="to">to:</span>
                                 <a id="toval">Good St. 2nd Poland</a>
                             </div>
                         </div>
 
                         <br><br>
-                        <div class="offer-details fullwi inline" id="accommodation-details">
-                            <div class="block">
+                        <div class="offer-details fullwi flex" id="accommodation-details">
+                            <div class="grid">
                                 <span class="tr" id="transport" style="opacity: 0.5; text-decoration: line-through;">provides transport</span>
                             </div>
-                            <div class="block">
+                            <div class="grid">
                                 <span class="tr" id="pets" style="opacity: 0.5; text-decoration: line-through;">allows pets</span>
                             </div>
-                            <div class="block">
+                            <div class="grid">
                                 <span class="tr" id="necessities" style="opacity: 0.5; text-decoration: line-through;">provides necessities (food, water, etc)</span>
                             </div>
                         </div>
@@ -177,28 +530,28 @@
                 </div>
 
                 <div class="fullwi">
-                    <div class="left block icon-box" id="car-icon" style="display: none;">
+                    <div class="left grid icon-box" id="car-icon" style="display: none;">
                         <img class="icon" src="assets/icons8-car-90.png">
                         <a class="tr icon-footer" id="viacar">via
                             car</a>
                     </div>
-                    <div class="left block icon-box" id="bus-icon" style="display: none;">
+                    <div class="left grid icon-box" id="bus-icon" style="display: none;">
                         <img class="icon" src="assets/icons8-bus-90.png">
                         <a class="tr icon-footer" id="viabus">via
                             bus</a>
                     </div>
-                    <div class="left block icon-box" id="vehicle-icon" style="display: none;">
+                    <div class="left grid icon-box" id="vehicle-icon" style="display: none;">
                         <h1>?</h1>
                         <a class="tr icon-footer" id="viaidk">via
                             other</a>
                     </div>
 
-                    <div class="left block icon-box">
+                    <div class="left grid icon-box">
                         <img class="icon" src="assets/icons8-users-90.png">
                         <a id="space-amount" class="icon-footer">5</a><p class="tr icon-footer" id="spaces">free</p>
                     </div>
 
-                    <div class="left block icon-box">
+                    <div class="left grid icon-box">
                         <img class="icon" id="poland" style="filter: none; display: none;" src="assets/icons8-poland-80.png">
                         <img class="icon" id="ukraine" style="filter: none; display: none;" src="assets/icons8-ukraine-80.png">
                         <img class="icon" id="romania" style="filter: none; display: none;" src="assets/icons8-romania-80.png">
@@ -208,39 +561,45 @@
                         <a id="in" class="icon-footer">in</a><p class="icon-footer" id="country">??</p>
                     </div>
 
-                    <div class="fullhi mleft inline" style="overflow: hidden; display: inline; vertical-align: middle;">
+                    <div class="fullhi mleft flex" style="overflow: hidden; display: inline; vertical-align: middle;">
                         <p id="offer-title">Kijów -> Granica | Kyiv -> Border | Київ до кордону</p>
                     </div>
 
 
                 </div>
-                <div class="offer-details fullwi inline">
-                    <div class="block personal-data">
-                        <img class="creator-img" id="personal-img" src="assets/selfie.png">
+                <div class="offer-details fullwi flex">
+                    <div class="grid personal-data">
+                        <img hidden class="creator-img" id="personal-img" src="assets/selfie.png">
                     </div>
-                    <div class="block">
+                    <div class="grid">
                         <span class="tr" id="creator">creator:</span>
                         <a id="creatorval">some dude</a>
                     </div>
-                    <div class="block">
+                    <div class="grid">
                         <span class="tr" id="location">location:</span>
                         <a id="locationval">Київ, 94-а протяжна вул, 92-193</a>
                     </div>
-                    <div class="block">
+                    <div class="grid">
                         <span class="tr" id="contact">contact:</span>
                         <a id="contactval">adr84@yahook.com  000 000 000</a>
                     </div>
 
-                    <div class="block">
+                    <div class="grid">
                         <span class="tr" id="updated">updated:</span>
                         <div>
-                            <span class="timeago-num">5 </span><span hidden class="tr" id="tr-timeago.hoursago">hours ago</span>
-                            <span class="timeago-num">5 </span><span hidden class="tr" id="tr-timeago.minutes">minutes ago</span>
-                            <span class="timeago-num">5 </span><span hidden class="tr" id="tr-timeago.seconds">seconds</span>
+                            <div hidden id="hours">
+                                <span class="timeago-num">5 </span><span class="tr" id="tr-timeago-hours">hours ago</span>
+                            </div>
+                            <div hidden id="minutes">
+                                <span class="timeago-num">5 </span><span class="tr" id="tr-timeago-minutes">minutes ago</span>
+                            </div>
+                            <div hidden id="seconds">
+                                <span class="timeago-num">5 </span><span class="tr" id="tr-timeago-seconds">seconds</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="block">
+                    <div class="grid">
                     <button class="tr offer-button" id="details">
                         details
                     </button>

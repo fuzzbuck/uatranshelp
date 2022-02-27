@@ -10,6 +10,10 @@ const SUPPORTED_LOCALES = [
     "ukrainian",
 ];
 
+/// Whether to delete 'old' fields from locale files,
+/// if they are not found in the base (english) locale
+const PURGE_OLD = true;
+
 let english_data = JSON.parse(
     fs.readFileSync("./locales/english.json", "utf8")
 );
@@ -21,6 +25,11 @@ SUPPORTED_LOCALES.forEach(locale => {
     Object.keys(english_data).forEach(key => {
         if (!data[key]) {
             data[key] = english_data[key];
+        }
+    });
+    Object.keys(data).forEach(key => {
+        if (PURGE_OLD && !english_data[key]) {
+            delete data[key];
         }
     });
 

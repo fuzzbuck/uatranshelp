@@ -52,7 +52,7 @@ pub enum HousingType {
 pub struct AccommodationData {
     pub housing_type: HousingType,
     /// Whether this offer also offers transport to the location of accommodation
-    pub offers_transport: Option<TransportData>,
+    pub offers_transport: bool,
 
     /// Whether this accommodation allows pets
     pub allows_pets: bool,
@@ -220,28 +220,7 @@ mod tests {
         let offer = Offer{
             otype: OfferType::OfferAccommodation(AccommodationData{
                 housing_type: HousingType::Shared,
-                offers_transport: Some(TransportData{
-                    from_to: LocationPath { from: util::Location {
-                        geo: util::LocationPoint {
-                            lon: 50.0,
-                            lat: 20.0
-                        },
-                        country: util::Country::Ukraine,
-                        city: "Test City".to_string(),
-                        street_address: "Test Street. 45th".to_string(),
-                        additional_info: "Near GLaDOS testing chambers".to_string()
-                    }, to: util::Location {
-                        geo: util::LocationPoint {
-                            lon: 60.0,
-                            lat: 15.0
-                        },
-                        country: util::Country::Ukraine,
-                        city: "Big City".to_string(),
-                        street_address: "Big Street".to_string(),
-                        additional_info: "Near small city".to_string()
-                    } },
-                    vehicle: TransportVehicle::PersonalMax5Seats
-                }),
+                offers_transport: true,
                 allows_pets: false,
                 provides_necessities: true
             }),

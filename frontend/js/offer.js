@@ -10,10 +10,11 @@ export let DOM_OFFERS = [];
 
 document.querySelectorAll(".filter").forEach(elem => {
     elem.addEventListener("click", () => {
-        document.getElementById(CURRENT_FILTER).classList.remove("active");
-        elem.classList.add("active");
+        document.querySelector(".filter-box #" + CURRENT_FILTER).classList.remove("active");
 
         CURRENT_FILTER = elem.id;
+        elem.classList.add("active");
+
         render_current();
     });
 })
@@ -52,7 +53,7 @@ export let render_current = () => {
             break;
     };
 
-    document.getElementById("num-offers").innerHTML = "[" + offers.length + "]";
+    document.getElementById("num-offers").textContent = "[" + offers.length + "]";
 
     offers.forEach(offer => {
         create_elem(offer);
@@ -64,14 +65,16 @@ let create_elem = (offer) => {
 
     try {
         div.id = offer.id;
-        div.querySelector("#description").innerHTML = offer.description;
+        div.querySelector("#description").textContent = offer.description;
 
         if (offer.personal != null) {
-            div.querySelector("#ageval").innerHTML = offer.personal.age;
-            div.querySelector("#firstnameval").innerHTML = offer.personal.first_name;
-            div.querySelector("#lastnameval").innerHTML = offer.personal.last_name;
-            div.querySelector("#genderval").innerHTML = offer.personal.gender;
-            div.querySelector("#personal-img").src = "data:image/png;base64," + offer.personal.photo_b64_img;
+            div.querySelector("#ageval").textContent = offer.personal.age;
+            div.querySelector("#firstnameval").textContent = offer.personal.first_name;
+            div.querySelector("#lastnameval").textContent = offer.personal.last_name;
+            div.querySelector("#genderval").textContent = offer.personal.gender;
+
+            div.querySelector("#personal-img").hidden = false;
+            div.querySelector("#personal-img").src = offer.personal.photo_b64_img.replace("<", "").replace(">", "");
         }
 
         function detail_transport(data) {
@@ -79,8 +82,8 @@ let create_elem = (offer) => {
             let to = data["from_to"]["to"];
 
             div.querySelector("#transport-details").style.display = "";
-            div.querySelector("#transport-details #fromval").innerHTML = from.street_address + ", " + from.city + ", " + from.country + ", " + from.additional_info;
-            div.querySelector("#transport-details #toval").innerHTML = to.street_address + ", " + to.city + ", " + to.country + ", " + to.additional_info;
+            div.querySelector("#transport-details #fromval").textContent = from.street_address + ", " + from.city + ", " + from.country + ", " + from.additional_info;
+            div.querySelector("#transport-details #toval").textContent = to.street_address + ", " + to.city + ", " + to.country + ", " + to.additional_info;
         }
 
         if(offer.otype.hasOwnProperty("OfferTransport")) {
@@ -97,13 +100,11 @@ let create_elem = (offer) => {
 
         if(offer.otype.hasOwnProperty("OfferAccommodation")) {
             let data = offer.otype["OfferAccommodation"];
-            if(data["offers_transport"] != null) {
-                detail_transport(data["offers_transport"]);
+            if(data["offers_transport"]) {
                 let s = div.querySelector("#transport").style;
                 s.opacity = 1;
                 s.textDecoration = "none";
             }
-
             if(data["allows_pets"]) {
                 let s = div.querySelector("#pets").style;
                 s.opacity = 1;
@@ -116,38 +117,59 @@ let create_elem = (offer) => {
             }
         }
 
-
-        div.querySelector("#space-amount").innerHTML = offer.available_spaces;
+        div.querySelector("#space-amount").textContent = offer.available_spaces;
 
         let country_elem = div.querySelector("#country");
         switch(offer.location.country) {
             case "Ukraine":
                 div.querySelector("#ukraine").style.display = "block";
-                country_elem.innerHTML = "UA";
+                country_elem.textContent = "UA";
                 break;
             case "Poland":
                 div.querySelector("#poland").style.display = "block";
-                country_elem.innerHTML = "PL";
+                country_elem.textContent = "PL";
                 break;
             case "Romania":
                 div.querySelector("#romania").style.display = "block";
-                country_elem.innerHTML = "RO";
+                country_elem.textContent = "RO";
                 break;
             case "Europe":
                 div.querySelector("#eu").style.display = "block";
-                country_elem.innerHTML = "EU";
+                country_elem.textContent = "EU";
                 break;
             case "Other":
                 div.querySelector("#other").style.display = "block";
-                country_elem.innerHTML = "??";
+                country_elem.textContent = "??";
                 break;
         }
 
-        div.querySelector("#offer-title").innerHTML = offer.title;
+        div.querySelector("#offer-title").textContent = offer.title;
 
-        div.querySelector("#creatorval").innerHTML = offer.name;
-        div.querySelector("#locationval").innerHTML = offer.location.city + ", " + offer.location.street_address + ", " + offer.location.additional_info;
-        div.querySelector("#contactval").innerHTML = offer.contact;
+        div.querySelector("#creatorval").textContent = offer.name;
+        div.querySelector("#locationval").textContent = offer.location.city + ", " + offer.location.street_address + ", " + offer.location.additional_info;
+        div.querySelector("#contactval").textContent = offer.contact;
+
+        // updated val
+        let secs_ago = Date.now() / 1000 - offer.update_epoch;
+        let mins_ago = secs_ago / 60;
+        let hours_ago = mins_ago / 60;
+
+        if (hours_ago > 2) {
+            div.querySelectorAll(".timeago-num").forEach(elem => {
+                elem.textContent = Math.floor(hours_ago).toString() + " ";
+            });
+            div.querySelector("#hours").hidden = false;
+        } else if (mins_ago > 2) {
+            div.querySelectorAll(".timeago-num").forEach(elem => {
+                elem.textContent = Math.floor(mins_ago).toString() + " ";
+            });
+            div.querySelector("#minutes").hidden = false;
+        } else {
+            div.querySelectorAll(".timeago-num").forEach(elem => {
+                elem.textContent = Math.floor(secs_ago).toString() + " ";
+            });
+            div.querySelector("#seconds").hidden = false;
+        }
 
         div.querySelector("#details").addEventListener("click", () => {
             div.querySelector(".offer-popup").style.display = "block";
@@ -159,8 +181,21 @@ let create_elem = (offer) => {
 
         div.querySelector("#pinonmap").addEventListener("click", () => {
             window.scrollTo(0, 0);
-            map.render_marker(offer);
+            map.open_map();
             map.focus(offer);
+        });
+
+        div.querySelector("#view-path").addEventListener("click", () => {
+            window.scrollTo(0, 0);
+            map.open_map();
+
+            L.marker([offer.location.geo.lat, offer.location.geo.lon], {icon: map.coordIconGreen}).addTo(map.map);
+            L.marker([offer.to.geo.lat, offer.to.geo.lon], {icon: map.coordIconOrange}).addTo(map.map);
+
+            L.polyline([
+                [offer.location.geo.lat, offer.location.geo.lon],
+                [offer.to.geo.lat, offer.to.geo.lon]
+            ], {color: '#f3f865'}).addTo(map.map);
         });
 
         document.querySelector(".offerlist").appendChild(div);
