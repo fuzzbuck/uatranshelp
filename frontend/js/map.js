@@ -127,12 +127,17 @@ export let clear_markers = () => {
 }
 
 export let coord_on = false;
+export let current_coord = {};
 export let CHECKPOINT_MARKER = null;
 export let LINE = null;
 let coord_marker = L.marker([0.0, 0.0], {icon: coordIconOrange}).addTo(map);
 
 export let set_coord_status = (val) => {
     coord_on = val;
+}
+
+export let get_coord_pos = () => {
+    return coord_marker.getLatLng();
 }
 
 let update_coord = (pos) => {
