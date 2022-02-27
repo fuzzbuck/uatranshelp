@@ -26,6 +26,9 @@ https://github.com/fuzzbuck/uatranshelp/tree/dev/frontend/locales
 - KEEP the length of text similar to the one in the base (english) locale.
 
 
+- KEEP the text true to it's meaning. This means that if in the base (english) locale, a word starts with lowercase, translate it as such.
+
+
 - DO NOT translate various symbols or HTML tags that might be located in the text.
 
 
