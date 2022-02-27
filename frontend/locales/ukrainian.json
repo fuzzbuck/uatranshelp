@@ -91,5 +91,6 @@
     "view-path": "mark path on map",
     "tr-timeago-seconds": "seconds ago",
     "tr-timeago-minutes": "minutes ago",
-    "tr-timeago-hours": "hours ago"
+    "tr-timeago-hours": "hours ago",
+    "guideline6": " - Read the <a href=\"./policy.txt\">policy</a> before proceeding."
 }
