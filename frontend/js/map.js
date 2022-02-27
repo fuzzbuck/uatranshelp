@@ -113,8 +113,8 @@ export function open_map() {
 export let OFFER_MARKERS = [];
 export let render_marker = (offer) => {
     let icon = typeIcons(offer.otype);
-    let marker = L.marker([offer.location.geo.lat, offer.location.geo.lon], {icon: icon}).addTo(map).on("mouseover", () => {
-        // todo display details next to map
+    let marker = L.marker([offer.location.geo.lat, offer.location.geo.lon], {icon: icon}).addTo(map).on("click", () => {
+        // todo scroll to original offer
     });
     OFFER_MARKERS.push(marker);
 }

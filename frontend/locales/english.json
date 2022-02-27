@@ -90,8 +90,8 @@
   "transport-instructions1": "You will now be shown an interactive map. Please select WHERE FROM are you offering/needing transport.",
   "transport-instructions2": "Now, select WHERE TO.",
   "verify-path": "is this path correct?",
-  "yes": "yes",
-  "no": "no",
+  "location-verify-yes": "yes",
+  "location-verify-no": "no",
   "personal-data": "personal data",
   "view-path": "mark path on map",
   "fill-details": "fill details"
