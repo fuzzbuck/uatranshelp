@@ -93,5 +93,6 @@
   "yes": "yes",
   "no": "no",
   "personal-data": "personal data",
-  "view-path": "mark path on map"
+  "view-path": "mark path on map",
+  "fill-details": "fill details"
 }

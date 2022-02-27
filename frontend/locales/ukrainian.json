@@ -92,5 +92,6 @@
     "tr-timeago-seconds": "seconds ago",
     "tr-timeago-minutes": "minutes ago",
     "tr-timeago-hours": "hours ago",
-    "guideline6": " - Read the <a href=\"./policy.txt\">policy</a> before proceeding."
+    "guideline6": " - Read the <a href=\"./policy.txt\">policy</a> before proceeding.",
+    "fill-details": "fill details"
 }
