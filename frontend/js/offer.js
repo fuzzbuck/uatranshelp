@@ -38,16 +38,16 @@ export let render_current = () => {
             offers = offers.filter(offer => offer.otype.hasOwnProperty("OfferAccommodation"));
             break;
         case "offer-other":
-            offers = offers.filter(offer => offer.otype.hasOwnProperty("OfferOther"));
+            offers = offers.filter(offer => offer.otype == "OfferOther");
             break;
         case "need-transport":
             offers = offers.filter(offer => offer.otype.hasOwnProperty("NeedTransport"));
             break;
         case "need-accommodation":
-            offers = offers.filter(offer => offer.otype.hasOwnProperty("NeedAccommodation"));
+            offers = offers.filter(offer => offer.otype == "NeedAccommodation");
             break;
         case "need-other":
-            offers = offers.filter(offer => offer.otype.hasOwnProperty("NeedOther"));
+            offers = offers.filter(offer => offer.otype == "NeedOther");
             break;
         default:
             break;
