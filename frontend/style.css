@@ -437,6 +437,7 @@ button:disabled {
     display: flex;
     background-color: rgba(0, 0, 0, 0.9);
     box-shadow: 0px 100vh 0px rgba(0, 0, 0, 0.9);
+    display: flex;
 }
 
 .create-popup a, a:link, a:hover {
@@ -448,9 +449,14 @@ button:disabled {
 }
 
 .create-box {
-    margin: auto;
     background: #000000;
     padding: 1rem;
+
+    margin-top: auto;
+    margin-bottom: auto;
+
+    height: fit-content;
+    width: 80vw;
 
     border: 2px solid #fffa65;
 }
