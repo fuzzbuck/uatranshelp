@@ -46,5 +46,21 @@ export let tr = (elem) => {
     elem.innerHTML = current_data[elem.id];
 }
 
-// todo - update based on browser configured language ?
-update("en");
+let lang = navigator.language || navigator.userLanguage;
+
+
+// set language based on navigator
+switch (lang) {
+    case "pl":
+    case "pl-PL":
+        update("pl");
+        break;
+    case "uk":
+    case "ua":
+    case "uk_UA":
+        update("pl");
+        break;
+    default:
+        update("en");
+        break;
+}
