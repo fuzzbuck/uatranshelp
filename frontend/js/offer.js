@@ -100,6 +100,8 @@ let create_elem = (offer) => {
 
         if(offer.otype.hasOwnProperty("OfferAccommodation")) {
             let data = offer.otype["OfferAccommodation"];
+            div.querySelector("#accommodation-details-box").hidden = false;
+
             if(data["offers_transport"]) {
                 let s = div.querySelector("#transport").style;
                 s.opacity = 1;
