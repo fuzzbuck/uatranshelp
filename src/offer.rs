@@ -120,7 +120,7 @@ pub struct Offer {
     pub description: String,
 
     /// How many spaces are available for this offer
-    pub available_spaces: u8,
+    pub available_spaces: u32,
 
     /// Whether the offer has to be machine translated (if false, assumes the offer creator did
     /// that already)

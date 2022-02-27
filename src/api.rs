@@ -142,7 +142,7 @@ pub(crate) async fn new(data: Json<OfferRequest>) -> WrappedResponse {
             return forbidden("First and Last name must be between 1 and 64 characters.");
         }
 
-        if personal.gender.len() < 1 || personal.gender.len() > 16 {
+        if personal.gender.len() < 1 || personal.gender.len() > 32 {
             return forbidden("Gender should be between 1 and 16 characters.");
         }
 
@@ -158,23 +158,23 @@ pub(crate) async fn new(data: Json<OfferRequest>) -> WrappedResponse {
         );
     }
 
-    if req.location.street_address.len() < 1 || req.location.street_address.len() > 64 {
+    if req.location.street_address.len() < 1 || req.location.street_address.len() > 128 {
         return forbidden("Street address must be between 1 and 128 characters.");
     }
 
-    if req.location.city.len() < 1 || req.location.city.len() > 64 {
+    if req.location.city.len() < 1 || req.location.city.len() > 128 {
         return forbidden("City must be between 1 and 64 characters.");
     }
 
-    if req.location.additional_info.len() < 1 || req.location.additional_info.len() > 128 {
+    if req.location.additional_info.len() < 1 || req.location.additional_info.len() > 256 {
         return forbidden("Additional location info must be between 1 and 128 characters.");
     }
 
-    if req.title.len() < 8 || req.title.len() > 256 {
+    if req.title.len() < 8 || req.title.len() > 512 { // add 2x slack
         return forbidden("Title must be between 8 and 256 characters.");
     }
 
-    if req.description.len() < 32 || req.description.len() > 1024 {
+    if req.description.len() < 32 || req.description.len() > 2056 {
         return forbidden("Description must be between 32 and 1024 characters.");
     }
 
