@@ -135,13 +135,7 @@ export let set_coord_status = (val) => {
     coord_on = val;
 }
 
-map.on("moveend", () => {
-    let pos = map.getCenter();
-
-    document.getElementById("lat").innerHTML = pos.lat.toFixed(6);
-    document.getElementById("lon").innerHTML = pos.lng.toFixed(6);;
-
-    console.log(coord_on);
+let update_coord = (pos) => {
     if (coord_on) {
         coord_marker.setLatLng(pos);
 
@@ -157,7 +151,21 @@ map.on("moveend", () => {
             LINE = null;
         }
     }
-})
+}
+
+map.on("moveend", () => {
+    let pos = map.getCenter();
+
+    document.getElementById("lat").innerHTML = pos.lat.toFixed(6);
+    document.getElementById("lon").innerHTML = pos.lng.toFixed(6);;
+
+    console.log(coord_on);
+    update_coord(pos);
+});
+
+map.on("click", e => {
+    update_coord(e.latlng);
+});
 
 
 
