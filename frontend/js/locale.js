@@ -64,6 +64,7 @@ switch (lang) {
     case "ro":
     case "ro_RO":
         update("ro");
+        break;
     default:
         update("en");
         break;
