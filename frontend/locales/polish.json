@@ -86,12 +86,12 @@
     "transport-instructions1": "Zobaczysz teraz interaktywną mapę. Wskaż SKĄD oferujesz/potrzebujesz transportu.",
     "transport-instructions2": "Teraz wskaż DOKĄD.",
     "verify-path": "czy ta ścieżka jest prawidłowa?",
-    "yes": "tak",
-    "no": "nie",
     "personal-data": "dane personalne",
     "view-path": "zaznacz ścieżke na mapie",
     "tr-timeago-seconds": "sekund temu",
     "tr-timeago-minutes": "minut temu",
     "tr-timeago-hours": "godzin temu",
-    "fill-details": "wypełnij szczegóły"
+    "fill-details": "wypełnij szczegóły",
+    "location-verify-yes": "tak",
+    "location-verify-no": "nie"
 }
