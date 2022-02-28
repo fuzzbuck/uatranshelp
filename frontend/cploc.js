@@ -8,6 +8,7 @@ import * as fs from "fs";
 const SUPPORTED_LOCALES = [
     "polish",
     "ukrainian",
+    "romanian",
 ];
 
 /// Whether to delete 'old' fields from locale files,

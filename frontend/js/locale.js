@@ -3,7 +3,8 @@
 export let locales = {
     "en": "./locales/english.json",
     "pl": "./locales/polish.json",
-    "ua": "./locales/ukrainian.json"
+    "ua": "./locales/ukrainian.json",
+    "ro": "./locales/romanian.json"
 }
 export let current = "en";
 export let current_data = {};
@@ -59,6 +60,10 @@ switch (lang) {
     case "ua":
     case "uk_UA":
         update("pl");
+        break;
+    case "ro":
+    case "ro_RO":
+        update("ro");
         break;
     default:
         update("en");
