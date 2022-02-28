@@ -68,6 +68,7 @@ let create_elem = (offer) => {
         div.querySelector("#description").textContent = offer.description;
 
         if (offer.personal != null) {
+            div.querySelector("#personal-details").hidden = false;
             div.querySelector("#ageval").textContent = offer.personal.age;
             div.querySelector("#firstnameval").textContent = offer.personal.first_name;
             div.querySelector("#lastnameval").textContent = offer.personal.last_name;
@@ -84,6 +85,9 @@ let create_elem = (offer) => {
             div.querySelector("#transport-details").style.display = "";
             div.querySelector("#transport-details #fromval").textContent = from.street_address + ", " + from.city + ", " + from.country + ", " + from.additional_info;
             div.querySelector("#transport-details #toval").textContent = to.street_address + ", " + to.city + ", " + to.country + ", " + to.additional_info;
+
+            div.querySelector("#view-path").hidden = false;
+
         }
 
         if(offer.otype.hasOwnProperty("OfferTransport")) {
@@ -98,9 +102,13 @@ let create_elem = (offer) => {
            detail_transport(offer.otype["OfferTransport"]);
         }
 
+        if(offer.otype.hasOwnProperty("NeedTransport")) {
+            detail_transport(offer.otype["NeedTransport"]);
+        }
+
         if(offer.otype.hasOwnProperty("OfferAccommodation")) {
             let data = offer.otype["OfferAccommodation"];
-            div.querySelector("#accommodation-details-box").hidden = false;
+            div.querySelector("#accommodation-details").hidden = false;
 
             if(data["offers_transport"]) {
                 let s = div.querySelector("#transport").style;

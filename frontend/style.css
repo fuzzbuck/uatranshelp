@@ -226,6 +226,10 @@ button:disabled {
     padding: 1rem;
 }
 
+#offer-title, #description {
+    white-space: pre-line;
+}
+
 .smallicon {
     width: 16px;
     height: 16px;
